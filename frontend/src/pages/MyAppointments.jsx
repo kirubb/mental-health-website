@@ -130,7 +130,7 @@ const MyAppointments = () => {
 
   return (
     <div>
-      <p className=" pb-3 mt-12 font-medium text-fuchsia-900 border-b">
+      <p className=" pb-3 mt-12 font-medium text-fuchsia-600 border-b">
         My Appointments
       </p>
       <div>
@@ -146,16 +146,16 @@ const MyAppointments = () => {
                 alt="doctor image"
               />
             </div>
-            <div className="flex-1 text-sm text-gray-600">
+            <div className="flex-1 text-sm text-fuchsia-600">
               <p className="text-fuchsia-900 font-semibold">
                 {item.docData.name}
               </p>
               <p>{item.docData.speciality}</p>
               <p className="text-fuchsia-900 font-medium mt-1">Address:</p>
-              <p className="text-xs text-gray-600">
+              <p className="text-xs text-fuchsia-600">
                 {item.docData.address.line1}
               </p>
-              <p className="text-xs text-gray-600">
+              <p className="text-xs text-fuchsia-600">
                 {item.docData.address?.line2}
               </p>
               <p className="text-sm mt-1">
@@ -167,7 +167,7 @@ const MyAppointments = () => {
               {item.isCompleted && item.prescription && (
                 <div className="mt-2">
                   <p className="text-fuchsia-900 font-medium">Prescription:</p>
-                  <p className="text-xs text-gray-600">{item.prescription}</p>
+                  <p className="text-xs text-fuchsia-600">{item.prescription}</p>
                 </div>
               )}
             </div>
@@ -175,7 +175,7 @@ const MyAppointments = () => {
             <div></div>
             <div className="flex flex-col gap-2 justify-end">
               {!item.cancelled && item.payment && !item.isCompleted && (
-                <button className="sm:min-w-48 py-2 border rounded text-[#696969]  bg-[#EAEFFF]">
+                <button className="sm:min-w-48 py-2 border rounded text-fuchsia-600  bg-[#EAEFFF]">
                   Paid
                 </button>
               )}
@@ -183,7 +183,7 @@ const MyAppointments = () => {
               {!item.cancelled && !item.payment && !item.isCompleted && (
                 <button
                   onClick={() => appointmentRazorpay(item._id)}
-                  className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300"
+                  className="text-sm text-fuchsia-500 text-center sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300"
                 >
                   Pay Online
                 </button>
@@ -191,7 +191,7 @@ const MyAppointments = () => {
               {!item.cancelled && !item.isCompleted && (
                 <button
                   onClick={() => cancelAppointment(item._id)}
-                  className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border rounded hover:bg-red-600 hover:text-white transition-all duration-300"
+                  className="text-sm text-fuchsia-500 text-center sm:min-w-48 py-2 border rounded hover:bg-red-600 hover:text-white transition-all duration-300"
                 >
                   Cancel appointment
                 </button>
