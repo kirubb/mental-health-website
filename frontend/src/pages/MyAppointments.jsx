@@ -164,6 +164,12 @@ const MyAppointments = () => {
                 </span>{" "}
                 {slotDateFormat(item.slotDate)} | {item.slotTime}{" "}
               </p>
+              {item.isCompleted && item.prescription && (
+                <div className="mt-2">
+                  <p className="text-fuchsia-900 font-medium">Prescription:</p>
+                  <p className="text-xs text-gray-600">{item.prescription}</p>
+                </div>
+              )}
             </div>
 
             <div></div>
