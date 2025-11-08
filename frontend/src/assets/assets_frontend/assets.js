@@ -33,7 +33,7 @@ import moon_icon from './moon.png'
 
 
 
-import career_counsellor from "./career_counsellor (3).png"
+import career_counsellor from "./career_counsellor.png"
 import anxiety_and_depression_specialist from "./anxiety_and_depression_specialist.png"
 import trauma_and_abuse_counsellor from "./trauma_and_abuse_counsellor.png"
 import child_and_adolescent_counsellor from "./child_and_adolescent_counsellor.png"
