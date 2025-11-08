@@ -146,7 +146,7 @@ const ChatWindow = () => {
         className="flex-1 p-4 overflow-y-auto flex flex-col space-y-3"
         ref={chatRef}
       >
-        <div>Hi there! How can I help you today? Type a message to begin</div>
+        <div>Hi there! How can I help you today? Type a message to begin!</div>
         {messages.map((msg, index) => (
           <div
             key={index}
