@@ -3,6 +3,8 @@ import appointmentModel from "../models/appointmentModel.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
+//API to change availability
+
 const changeAvailability = async (req, res) => {
   try {
     const { docId } = req.body;

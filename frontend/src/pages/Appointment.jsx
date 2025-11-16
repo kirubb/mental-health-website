@@ -199,63 +199,81 @@ const Appointment = () => {
           </div>
       </div>
       
-    {/* Display available slots */}
+    {/* ---- MODIFICATION START ----
+    Show booking UI only if doctor is available 
+    */}
 
-    <div className='sm:ml-72 sm:pl-4 mt-4 font-medium text-gray-500'>
-      <p>Booking Slots</p>
-      <div className='flex gap-3 items-center w-full overflow-x-scroll mt-4'>
-        {
-          docSlots.map((item, index) => {
-          // If there are no slots for this day, render nothing.
-          if (item.length === 0) {
-              return null;
-          }
-          // Otherwise, render the date circle.
-          return (
-              <div 
+    {/* Check the doctor's is_available field first */}
+    {docInfo.is_available ? (
+      
+      /* If true, show the entire booking UI */
+      <div className='sm:ml-72 sm:pl-4 mt-4 font-medium text-gray-500'>
+        <p>Booking Slots</p>
+        <div className='flex gap-3 items-center w-full overflow-x-scroll mt-4'>
+          {
+            docSlots.map((item, index) => {
+              // If there are no slots for this day, render nothing.
+              if (item.length === 0) {
+                return null;
+              }
+              // Otherwise, render the date circle.
+              return (
+                <div 
                   onClick={() => setSlotIndex(index)} 
                   className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${slotIndex === index ? "bg-primary text-white" : "border border-gray-200"}`} 
                   key={index} >
                   <p>
-                      {daysOfWeek[item[0].dateTime.getDay()]}
+                    {daysOfWeek[item[0].dateTime.getDay()]}
                   </p>
                   <p>
-                      {item[0].dateTime.getDate()}
+                    {item[0].dateTime.getDate()}
                   </p>
-              </div>
-          );
-          })
-        }
-      </div>
+                </div>
+              );
+            })
+          }
+        </div>
 
-    <div className="flex items-center gap-3 w-full overflow-x-scroll mt-4 show-scrollbar">
-    {/* First, check if the selected day's slot array exists and is not empty */}
-    {docSlots[slotIndex] && docSlots[slotIndex].length > 0 ? (
-        // If it exists, map over the slots and display them
-        docSlots[slotIndex].map((item, index) => (
+        <div className="flex items-center gap-3 w-full overflow-x-scroll mt-4 show-scrollbar">
+        {/* First, check if the selected day's slot array exists and is not empty */}
+        {docSlots[slotIndex] && docSlots[slotIndex].length > 0 ? (
+          // If it exists, map over the slots and display them
+          docSlots[slotIndex].map((item, index) => (
             <p 
-                onClick={() => setSlotTime(item.time)}
-                key={index}
-                className={`text-sm font-light flex-shrink-0 px-5 py-2 mb-1 rounded-full cursor-pointer ${
-                    item.time === slotTime
-                      ? "bg-primary text-white"
-                      : "text-gray-500 border border-gray-300"
-                  }`}
+              onClick={() => setSlotTime(item.time)}
+              key={index}
+              className={`text-sm font-light flex-shrink-0 px-5 py-2 mb-1 rounded-full cursor-pointer ${
+                item.time === slotTime
+                  ? "bg-primary text-white"
+                  : "text-gray-500 border border-gray-300"
+              }`}
             >
-                {item.time.toLowerCase()}
+              {item.time.toLowerCase()}
             </p>
-        ))
-    ) : (
-        // If there are no slots, display a message
-        <p>
+          ))
+        ) : (
+          // If there are no slots, display a message
+          <p>
             No available slots for this day.
+          </p>
+        )}
+        </div>
+
+        <button onClick={bookAppointment} className="bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6">Book an Appointment</button>
+
+      </div>
+    ) : (
+      /* If false, show the "not available" message */
+      <div className='sm:ml-72 sm:pl-4 mt-4 font-medium text-gray-500'>
+        <p className='text-red-500 font-semibold text-lg'>
+          This doctor is not available for appointments at this time.
         </p>
+      </div>
     )}
-    </div>
 
-    <button onClick={bookAppointment} className="bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6">Book an Appointment</button>
+    {/* ---- MODIFICATION END ---- */}
 
-    </div>
+
     {/* Listing related doctors */}
 
     <RelatedDoctors docId={docId} speciality={docInfo.speciality} />
